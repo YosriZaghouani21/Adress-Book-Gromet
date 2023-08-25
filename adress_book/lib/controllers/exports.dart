@@ -1,0 +1,10 @@
+export 'package:adress_book/controllers/bookmarkprovider.dart';
+export 'package:adress_book/controllers/chat_provider.dart';
+export 'package:adress_book/controllers/image_provider.dart';
+export 'package:adress_book/controllers/job_provider.dart';
+export 'package:adress_book/controllers/login_provider.dart';
+export 'package:adress_book/controllers/onboarding_provider.dart';
+export 'package:adress_book/controllers/profile_provider.dart';
+export 'package:adress_book/controllers/signup_provider.dart';
+export 'package:adress_book/controllers/zoom_provider.dart';
+export 'package:adress_book/constants/app_constants.dart';
