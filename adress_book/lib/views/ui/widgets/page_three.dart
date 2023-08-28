@@ -1,3 +1,5 @@
+import 'package:adress_book/views/ui/auth/login.dart';
+import 'package:adress_book/views/ui/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -43,7 +45,7 @@ class PageThree extends StatelessWidget {
 
                       await prefs.setBool('entrypoint', true);
 
-                      // Get.to(() => const LoginPage());
+                      Get.to(() => const LoginPage());
                     },
                     text: "Login",
                     width: width * 0.4,
@@ -52,7 +54,7 @@ class PageThree extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      //  Get.to(() => const RegistrationPage());
+                      Get.to(() => const RegistrationPage());
                     },
                     child: Container(
                       width: width * 0.4,

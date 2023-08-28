@@ -1,4 +1,5 @@
 import 'package:adress_book/controllers/exports.dart';
+import 'package:adress_book/views/ui/mainscreen.dart';
 import 'package:adress_book/views/ui/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
               iconTheme: IconThemeData(color: Color(kDark.value)),
               primarySwatch: Colors.grey,
             ),
-            home: const OnBoardingScreen(),
+            home: const MainScreen(),
           );
         });
   }
