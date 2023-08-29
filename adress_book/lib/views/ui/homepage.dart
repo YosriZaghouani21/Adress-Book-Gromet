@@ -1,6 +1,9 @@
 import 'package:adress_book/controllers/job_provider.dart';
 import 'package:adress_book/views/common/drawer/drawerWidget.dart';
 import 'package:adress_book/views/common/exports.dart';
+import 'package:adress_book/views/common/vertical_tile.dart';
+import 'package:adress_book/views/ui/jobs/job_page.dart';
+import 'package:adress_book/views/ui/jobs/widgets/horizontal_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -66,6 +69,20 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                     const HeightSpacer(size: 15),
+                    SizedBox(
+                      height: hieght * 0.28,
+                      child: ListView.builder(
+                          itemCount: 4,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return JobHorizontalTile(
+                              onTap: () {
+                                Get.to(() =>
+                                    const JobPage(title: "Facebook", id: '12'));
+                              },
+                            );
+                          }),
+                    )
                     // SizedBox(
                     //     height: hieght * 0.28,
                     //     child: FutureBuilder(
@@ -93,12 +110,25 @@ class _HomePageState extends State<HomePage> {
                     //                 });
                     //           }
                     //         })),
+                    ,
+
                     const HeightSpacer(size: 20),
                     HeadingWidget(
                       text: "Recently Posted",
                       onTap: () {},
                     ),
                     const HeightSpacer(size: 20),
+                    SizedBox(
+                      height: hieght * 0.28,
+                      child: ListView.builder(
+                          itemCount: 4,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return VerticalTile(
+                              onTap: () {},
+                            );
+                          }),
+                    ),
                     // FutureBuilder(
                     //     future: jobNotifier.recent,
                     //     builder: (context, snapshot) {
