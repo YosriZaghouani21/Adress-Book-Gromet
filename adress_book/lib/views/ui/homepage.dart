@@ -1,9 +1,11 @@
+import 'package:adress_book/constants/app_constants.dart';
 import 'package:adress_book/controllers/job_provider.dart';
 import 'package:adress_book/views/common/drawer/drawerWidget.dart';
 import 'package:adress_book/views/common/exports.dart';
 import 'package:adress_book/views/common/vertical_tile.dart';
 import 'package:adress_book/views/ui/jobs/job_page.dart';
 import 'package:adress_book/views/ui/jobs/widgets/horizontal_tile.dart';
+import 'package:adress_book/views/ui/search/searchpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -58,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                     const HeightSpacer(size: 40),
                     SearchWidget(
                       onTap: () {
-                        // Get.to(() => const SearchPage());
+                        Get.to(() => const SearchPage());
                       },
                     ),
                     const HeightSpacer(size: 30),

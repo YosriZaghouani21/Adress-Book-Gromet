@@ -126,7 +126,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   const HeightSpacer(size: 50),
                   CustomButton(
                     onTap: () {
-                      // loginNotifier.firstTime = !loginNotifier.firstTime;
+                      loginNotifier.firstTime = !loginNotifier.firstTime;
 
                       // SignupModel model = SignupModel(
                       //     username: name.text,

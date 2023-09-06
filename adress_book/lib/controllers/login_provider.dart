@@ -1,3 +1,7 @@
+import 'package:adress_book/constants/app_constants.dart';
+import 'package:adress_book/models/request/auth/login_model.dart';
+import 'package:adress_book/services/helpers/auth_helper.dart';
+import 'package:adress_book/views/ui/mainscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -72,20 +76,20 @@ class LoginNotifier extends ChangeNotifier {
     }
   }
 
-  // userLogin(LoginModel model) {
-  //   AuthHelper.login(model).then((response) {
-  //     if (response && firstTime) {
-  //       Get.off(() => const PersonalDetails());
-  //     } else if (response && !firstTime) {
-  //       Get.off(() => const MainScreen());
-  //     } else if (!response) {
-  //       Get.snackbar("Sign Failed", "Please Check your credentials",
-  //           colorText: Color(kLight.value),
-  //           backgroundColor: Colors.red,
-  //           icon: const Icon(Icons.add_alert));
-  //     }
-  //   });
-  // }
+  userLogin(LoginModel model) {
+    AuthHelper.login(model).then((response) {
+      if (response && firstTime) {
+        // Get.off(() => const PersonalDetails());
+      } else if (response && !firstTime) {
+        Get.off(() => const MainScreen());
+      } else if (!response) {
+        Get.snackbar("Sign Failed", "Please Check your credentials",
+            colorText: Color(kLight.value),
+            backgroundColor: Colors.red,
+            icon: const Icon(Icons.add_alert));
+      }
+    });
+  }
 
   logout() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();

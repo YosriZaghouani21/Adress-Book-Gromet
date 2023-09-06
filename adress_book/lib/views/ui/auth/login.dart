@@ -1,4 +1,5 @@
 import 'package:adress_book/controllers/login_provider.dart';
+import 'package:adress_book/models/request/auth/login_model.dart';
 import 'package:adress_book/views/ui/auth/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
     return Consumer<LoginNotifier>(
       builder: (context, loginNotifier, child) {
         loginNotifier.getPrefs();
+        // print(loginNotifier.loggedIn);
         return Scaffold(
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(50),
@@ -118,18 +120,18 @@ class _LoginPageState extends State<LoginPage> {
                     const HeightSpacer(size: 50),
                     CustomButton(
                       onTap: () {
-                        // if (loginNotifier.validateAndSave()) {
-                        //   LoginModel model = LoginModel(
-                        //       email: email.text, password: password.text);
+                        if (loginNotifier.validateAndSave()) {
+                          LoginModel model = LoginModel(
+                              email: email.text, password: password.text);
 
-                        //   loginNotifier.userLogin(model);
-                        // } else {
-                        //   Get.snackbar(
-                        //       "Sign Failed", "Please Check your credentials",
-                        //       colorText: Color(kLight.value),
-                        //       backgroundColor: Colors.red,
-                        //       icon: const Icon(Icons.add_alert));
-                        // }
+                          loginNotifier.userLogin(model);
+                        } else {
+                          Get.snackbar(
+                              "Sign Failed", "Please Check your credentials",
+                              colorText: Color(kLight.value),
+                              backgroundColor: Colors.red,
+                              icon: const Icon(Icons.add_alert));
+                        }
                       },
                       text: "Login",
                     )
