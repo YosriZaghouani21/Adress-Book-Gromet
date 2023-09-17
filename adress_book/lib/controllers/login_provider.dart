@@ -1,6 +1,8 @@
 import 'package:adress_book/constants/app_constants.dart';
 import 'package:adress_book/models/request/auth/login_model.dart';
+import 'package:adress_book/models/request/auth/profile_update_model.dart';
 import 'package:adress_book/services/helpers/auth_helper.dart';
+import 'package:adress_book/views/ui/auth/update_user.dart';
 import 'package:adress_book/views/ui/mainscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -79,7 +81,7 @@ class LoginNotifier extends ChangeNotifier {
   userLogin(LoginModel model) {
     AuthHelper.login(model).then((response) {
       if (response && firstTime) {
-        // Get.off(() => const PersonalDetails());
+        Get.off(() => const PersonalDetails());
       } else if (response && !firstTime) {
         Get.off(() => const MainScreen());
       } else if (!response) {
@@ -98,23 +100,23 @@ class LoginNotifier extends ChangeNotifier {
     _firstTime = false;
   }
 
-  // updateProfile(ProfileUpdateReq model) async {
-  //   AuthHelper.updateProfile(model).then((response) {
-  //     if (response) {
-  //       Get.snackbar("Profile Update", "Enjoy your search for a job",
-  //           colorText: Color(kLight.value),
-  //           backgroundColor: Color(kLightBlue.value),
-  //           icon: const Icon(Icons.add_alert));
+  updateProfile(ProfileUpdateReq model) async {
+    bool response = await AuthHelper.updateProfile(model);
 
-  //       Future.delayed(const Duration(seconds: 3)).then((value) {
-  //         Get.offAll(() => const MainScreen());
-  //       });
-  //     } else {
-  //       Get.snackbar("Updating Failed", "Please try again",
-  //           colorText: Color(kLight.value),
-  //           backgroundColor: Color(kOrange.value),
-  //           icon: const Icon(Icons.add_alert));
-  //     }
-  //   });
-  // }
+    if (response) {
+      Get.snackbar("Profile Update", "Enjoy your search for a job",
+          colorText: Color(kLight.value),
+          backgroundColor: Color(kLightBlue.value),
+          icon: const Icon(Icons.add_alert));
+
+      Future.delayed(const Duration(seconds: 3)).then((value) {
+        Get.offAll(() => const MainScreen());
+      });
+    } else {
+      Get.snackbar("Updating Failed", "Please try again",
+          colorText: Color(kLight.value),
+          backgroundColor: Color(kOrange.value),
+          icon: const Icon(Icons.add_alert));
+    }
+  }
 }

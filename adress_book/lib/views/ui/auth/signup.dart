@@ -1,4 +1,5 @@
 import 'package:adress_book/controllers/exports.dart';
+import 'package:adress_book/models/request/auth/signup_model.dart';
 import 'package:adress_book/views/ui/auth/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -128,12 +129,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     onTap: () {
                       loginNotifier.firstTime = !loginNotifier.firstTime;
 
-                      // SignupModel model = SignupModel(
-                      //     username: name.text,
-                      //     email: email.text,
-                      //     password: password.text);
+                      SignupModel model = SignupModel(
+                          username: name.text,
+                          email: email.text,
+                          password: password.text);
 
-                      // signupNotifier.upSignup(model);
+                      signupNotifier.upSignup(model);
                     },
                     text: "Sign Up",
                   )

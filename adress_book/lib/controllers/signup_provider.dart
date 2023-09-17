@@ -1,4 +1,5 @@
 import 'package:adress_book/controllers/exports.dart';
+import 'package:adress_book/models/request/auth/signup_model.dart';
 import 'package:adress_book/services/helpers/auth_helper.dart';
 import 'package:adress_book/views/ui/auth/login.dart';
 import 'package:flutter/material.dart';
@@ -36,17 +37,17 @@ class SignUpNotifier extends ChangeNotifier {
     }
   }
 
-  // upSignup(SignupModel model) {
-  //   AuthHelper.signup(model).then((response) {
-  //     if (response) {
-  //       Get.offAll(() => const LoginPage(),
-  //           transition: Transition.fade, duration: const Duration(seconds: 2));
-  //     } else {
-  //       Get.snackbar("Sign up Failed", "Please Check your credentials",
-  //           colorText: Color(kLight.value),
-  //           backgroundColor: Colors.red,
-  //           icon: const Icon(Icons.add_alert));
-  //     }
-  //   });
-  // }
+  upSignup(SignupModel model) {
+    AuthHelper.signup(model).then((response) {
+      if (response) {
+        Get.offAll(() => const LoginPage(),
+            transition: Transition.fade, duration: const Duration(seconds: 2));
+      } else {
+        Get.snackbar("Sign up Failed", "Please Check your credentials",
+            colorText: Color(kLight.value),
+            backgroundColor: Colors.red,
+            icon: const Icon(Icons.add_alert));
+      }
+    });
+  }
 }
