@@ -1,9 +1,10 @@
-import 'package:adress_book/constants/app_constants.dart';
 import 'package:adress_book/controllers/job_provider.dart';
 import 'package:adress_book/views/common/drawer/drawerWidget.dart';
-import 'package:adress_book/views/common/exports.dart';
+import 'package:adress_book/views/common/vertical_shimmer.dart';
 import 'package:adress_book/views/common/vertical_tile.dart';
 import 'package:adress_book/views/ui/jobs/job_page.dart';
+import 'package:adress_book/views/ui/jobs/jobs_list.dart';
+import 'package:adress_book/views/ui/jobs/widgets/horizontal_shimmer.dart';
 import 'package:adress_book/views/ui/jobs/widgets/horizontal_tile.dart';
 import 'package:adress_book/views/ui/search/searchpage.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:provider/provider.dart';
+
+import '../common/exports.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -67,89 +70,62 @@ class _HomePageState extends State<HomePage> {
                     HeadingWidget(
                       text: "Popular Jobs",
                       onTap: () {
-                        // Get.to(() => const JobListPage());
+                        Get.to(() => const JobListPage());
                       },
                     ),
                     const HeightSpacer(size: 15),
                     SizedBox(
-                      height: hieght * 0.28,
-                      child: ListView.builder(
-                          itemCount: 4,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return JobHorizontalTile(
-                              onTap: () {
-                                Get.to(() =>
-                                    const JobPage(title: "Facebook", id: '12'));
-                              },
-                            );
-                          }),
-                    )
-                    // SizedBox(
-                    //     height: hieght * 0.28,
-                    //     child: FutureBuilder(
-                    //         future: jobNotifier.jobList,
-                    //         builder: (context, snapshot) {
-                    //           if (snapshot.connectionState ==
-                    //               ConnectionState.waiting) {
-                    //             return const HorizontalShimmer();
-                    //           } else if (snapshot.hasError) {
-                    //             return Text("Error ${snapshot.error}");
-                    //           } else {
-                    //             final jobs = snapshot.data;
-                    //             return ListView.builder(
-                    //                 itemCount: jobs!.length,
-                    //                 scrollDirection: Axis.horizontal,
-                    //                 itemBuilder: (context, index) {
-                    //                   final job = jobs[index];
-                    //                   return JobHorizontalTile(
-                    //                     onTap: () {
-                    //                       Get.to(() => JobPage(
-                    //                           title: job.company, id: job.id));
-                    //                     },
-                    //                     job: job,
-                    //                   );
-                    //                 });
-                    //           }
-                    //         })),
-                    ,
-
+                        height: hieght * 0.28,
+                        child: FutureBuilder(
+                            future: jobNotifier.jobList,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const HorizontalShimmer();
+                              } else if (snapshot.hasError) {
+                                return Text("Error ${snapshot.error}");
+                              } else {
+                                final jobs = snapshot.data;
+                                return ListView.builder(
+                                    itemCount: jobs!.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      final job = jobs[index];
+                                      return JobHorizontalTile(
+                                        onTap: () {
+                                          Get.to(() => JobPage(
+                                              title: job.company, id: job.id));
+                                        },
+                                        job: job,
+                                      );
+                                    });
+                              }
+                            })),
                     const HeightSpacer(size: 20),
                     HeadingWidget(
                       text: "Recently Posted",
                       onTap: () {},
                     ),
                     const HeightSpacer(size: 20),
-                    SizedBox(
-                      height: hieght * 0.28,
-                      child: ListView.builder(
-                          itemCount: 4,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
+                    FutureBuilder(
+                        future: jobNotifier.recent,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const VerticalShimmer();
+                          } else if (snapshot.hasError) {
+                            return Text("Error ${snapshot.error}");
+                          } else {
+                            final jobs = snapshot.data;
                             return VerticalTile(
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(() =>
+                                    JobPage(title: jobs!.company, id: jobs.id));
+                              },
+                              job: jobs,
                             );
-                          }),
-                    ),
-                    // FutureBuilder(
-                    //     future: jobNotifier.recent,
-                    //     builder: (context, snapshot) {
-                    //       if (snapshot.connectionState ==
-                    //           ConnectionState.waiting) {
-                    //         return const VerticalShimmer();
-                    //       } else if (snapshot.hasError) {
-                    //         return Text("Error ${snapshot.error}");
-                    //       } else {
-                    //         final jobs = snapshot.data;
-                    //         return VerticalTile(
-                    //           onTap: () {
-                    //             Get.to(() =>
-                    //                 JobPage(title: jobs!.company, id: jobs.id));
-                    //           },
-                    //           job: jobs,
-                    //         );
-                    //       }
-                    //     }),
+                          }
+                        }),
                   ],
                 ),
               ),

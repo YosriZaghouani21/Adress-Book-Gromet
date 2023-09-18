@@ -1,4 +1,5 @@
 import 'package:adress_book/controllers/exports.dart';
+import 'package:adress_book/models/response/jobs/jobs_response.dart';
 import 'package:adress_book/services/helpers/jobs_helper.dart';
 import 'package:adress_book/views/common/exports.dart';
 import 'package:adress_book/views/common/loader.dart';
@@ -38,21 +39,60 @@ class _SearchPageState extends State<SearchPage> {
         ),
         elevation: 0,
       ),
-      body: Padding(
-          padding: EdgeInsets.all(20.h),
-          child: Column(
-            children: [
-              Image.asset("assets/images/optimized_search.png"),
-              ReusableText(
-                text: 'Search For Jobs',
-                style: appstyle(
-                  24,
-                  Color(kDark.value),
-                  FontWeight.bold,
-                ),
-              )
-            ],
-          )),
+      body: search.text.isNotEmpty
+          ? Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+              child: FutureBuilder<List<JobsResponse>>(
+                  future: JobsHelper.searchJobs(search.text),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Text("Error ${snapshot.error}");
+                    } else if (snapshot.data!.isEmpty) {
+                      return const SearchLoading(text: "Job Not Found");
+                    } else {
+                      final jobs = snapshot.data;
+                      return ListView.builder(
+                          itemCount: jobs!.length,
+                          itemBuilder: (context, index) {
+                            final job = jobs[index];
+                            return VerticalTileWidget(job: job);
+                          });
+                    }
+                  }),
+            )
+          : const SearchLoading(
+              text: 'Start Searching for Jobs',
+            ),
     );
+  }
+}
+
+class SearchLoading extends StatelessWidget {
+  const SearchLoading({
+    super.key,
+    required this.text,
+  });
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.all(20.h),
+        child: Column(
+          children: [
+            Image.asset("assets/images/optimized_search.png"),
+            ReusableText(
+              text: text,
+              style: appstyle(
+                24,
+                Color(kDark.value),
+                FontWeight.bold,
+              ),
+            )
+          ],
+        ));
   }
 }

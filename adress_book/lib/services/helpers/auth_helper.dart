@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:adress_book/models/request/auth/login_model.dart';
 import 'package:adress_book/models/request/auth/profile_update_model.dart';
 import 'package:adress_book/models/request/auth/signup_model.dart';
-import 'package:adress_book/models/response/login_res_model.dart';
-import 'package:adress_book/models/response/profile_model.dart';
+import 'package:adress_book/models/response/auth/login_res_model.dart';
+import 'package:adress_book/models/response/auth/profile_model.dart';
+
 import 'package:adress_book/services/config.dart';
 import 'package:http/http.dart' as http;
 

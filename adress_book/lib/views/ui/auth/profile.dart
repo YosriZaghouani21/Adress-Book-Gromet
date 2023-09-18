@@ -1,6 +1,6 @@
 import 'package:adress_book/controllers/exports.dart';
+import 'package:adress_book/models/response/auth/profile_model.dart';
 
-import 'package:adress_book/models/response/profile_model.dart';
 import 'package:adress_book/views/common/drawer/drawerWidget.dart';
 import 'package:adress_book/views/common/exports.dart';
 import 'package:adress_book/views/ui/auth/profile_update.dart';

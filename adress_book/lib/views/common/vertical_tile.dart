@@ -1,16 +1,13 @@
+import 'package:adress_book/models/response/jobs/jobs_response.dart';
 import 'package:adress_book/views/common/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class VerticalTile extends StatelessWidget {
-  const VerticalTile({
-    super.key,
-    this.onTap,
-    /*required this.job*/
-  });
+  const VerticalTile({super.key, this.onTap, required this.job});
 
-  // final JobsResponse? job;
+  final JobsResponse? job;
 
   final void Function()? onTap;
 
@@ -45,14 +42,14 @@ class VerticalTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ReusableText(
-                            text: 'DBtech',
+                            text: job!.company,
                             style: appstyle(
                                 20, Color(kDark.value), FontWeight.w600),
                           ),
                           SizedBox(
                             width: width * 0.5,
                             child: ReusableText(
-                              text: 'Node Developer',
+                              text: job!.title,
                               style: appstyle(
                                   18, Color(kDarkGrey.value), FontWeight.w600),
                             ),
@@ -73,11 +70,11 @@ class VerticalTile extends StatelessWidget {
                 child: Row(
                   children: [
                     ReusableText(
-                        text: '20k',
+                        text: job!.salary,
                         style:
                             appstyle(23, Color(kDark.value), FontWeight.w600)),
                     ReusableText(
-                        text: '/monthly',
+                        text: '/${job!.period}',
                         style: appstyle(
                             23, Color(kDarkGrey.value), FontWeight.w600))
                   ],
