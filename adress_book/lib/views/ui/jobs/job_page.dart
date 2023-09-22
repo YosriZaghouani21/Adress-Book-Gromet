@@ -1,5 +1,6 @@
 import 'package:adress_book/controllers/bookmarkprovider.dart';
 import 'package:adress_book/controllers/job_provider.dart';
+import 'package:adress_book/models/request/bookmarks/bookmarks_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,28 +29,29 @@ class _JobPageState extends State<JobPage> {
         jobsNotifier.getJob(widget.id);
         return Scaffold(
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(20.h),
+              preferredSize: Size.fromHeight(50.h),
               child: CustomAppBar(
                   text: widget.title,
                   actions: [
                     Consumer<BookMarkNotifier>(
                       builder: (context, bookMarkNotifier, child) {
-                        // bookMarkNotifier.loadJobs();
+                        bookMarkNotifier.loadJobs();
                         return GestureDetector(
                           onTap: () {
-                            // if (bookMarkNotifier.jobs.contains(widget.id)) {
-                            //   bookMarkNotifier.deleteBookMark(widget.id);
-                            // } else {
-                            //   BookmarkReqResModel model =
-                            //       BookmarkReqResModel(job: widget.id);
-                            //   bookMarkNotifier.addBookMark(model, widget.id);
-                            // }
+                            if (bookMarkNotifier.jobs.contains(widget.id)) {
+                              bookMarkNotifier.deleteBookMark(widget.id);
+                            } else {
+                              BookmarkReqResModel model =
+                                  BookmarkReqResModel(job: widget.id);
+                              bookMarkNotifier.addBookMark(model, widget.id);
+                            }
                           },
-                          // child: Padding(
-                          //   padding: const EdgeInsets.only(right: 12.0),
-                          //   child: !bookMarkNotifier.jobs.contains(widget.id)
-                          //       ? const Icon(Fontisto.bookmark)
-                          //       : const Icon(Fontisto.bookmark_alt),
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 12.0),
+                            child: !bookMarkNotifier.jobs.contains(widget.id)
+                                ? const Icon(Fontisto.bookmark)
+                                : const Icon(Fontisto.bookmark_alt),
+                          ),
                         );
                       },
                     )
