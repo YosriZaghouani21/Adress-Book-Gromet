@@ -1,6 +1,11 @@
 import 'package:adress_book/controllers/bookmarkprovider.dart';
 import 'package:adress_book/controllers/job_provider.dart';
 import 'package:adress_book/models/request/bookmarks/bookmarks_model.dart';
+import 'package:adress_book/models/request/chat/create_chat.dart';
+import 'package:adress_book/models/request/messaging/send_message.dart';
+import 'package:adress_book/services/helpers/chat_helper.dart';
+import 'package:adress_book/services/helpers/messaging_helper.dart';
+import 'package:adress_book/views/ui/mainscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -189,22 +194,22 @@ class _JobPageState extends State<JobPage> {
                               padding: EdgeInsets.only(bottom: 20.h),
                               child: CustomOutlineBtn(
                                   onTap: () {
-                                    // print("tapped");
-                                    // CreateChat model =
-                                    //     CreateChat(userId: job.agentId);
-                                    // ChatHelper.apply(model).then((response) {
-                                    //   if (response[0]) {
-                                    //     SendMessage model = SendMessage(
-                                    //         content:
-                                    //             "Hello, I'm interested in ${job.title} job in $job.location}",
-                                    //         chatId: response[1],
-                                    //         receiver: job.agentId);
-                                    //     MesssagingHelper.sendMessage(model)
-                                    //         .whenComplete(() {
-                                    //       Get.to(() => const MainScreen());
-                                    //     });
-                                    //   }
-                                    // });
+                                    print("tapped");
+                                    CreateChat model =
+                                        CreateChat(userId: job.agentId);
+                                    ChatHelper.apply(model).then((response) {
+                                      if (response[0]) {
+                                        SendMessage model = SendMessage(
+                                            content:
+                                                "Hello, I'm interested in ${job.title} job in $job.location}",
+                                            chatId: response[1],
+                                            receiver: job.agentId);
+                                        MesssagingHelper.sendMessage(model)
+                                            .whenComplete(() {
+                                          Get.to(() => const MainScreen());
+                                        });
+                                      }
+                                    });
                                   },
                                   color2: Color(kOrange.value),
                                   width: width,
