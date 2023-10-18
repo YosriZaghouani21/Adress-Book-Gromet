@@ -1,7 +1,7 @@
 # JobHub Platform
 
-https://res.cloudinary.com/dr63ndxik/image/upload/v1697651178/fsfoknisp3dfeopileqr.png
 
+<img src="https://res.cloudinary.com/dr63ndxik/image/upload/v1697651178/fsfoknisp3dfeopileqr.png">
 ## Overview
 
 Welcome to the JobHub Platform, a sophisticated application meticulously crafted using Flutter for the frontend and Node.js for a robust backend. The platform is designed to revolutionize the way job seekers connect with prospective employers and engage in insightful career discussions.
