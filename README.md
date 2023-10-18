@@ -2,6 +2,8 @@
 
 
 <img src="https://res.cloudinary.com/dr63ndxik/image/upload/v1697651178/fsfoknisp3dfeopileqr.png">
+
+
 ## Overview
 
 Welcome to the JobHub Platform, a sophisticated application meticulously crafted using Flutter for the frontend and Node.js for a robust backend. The platform is designed to revolutionize the way job seekers connect with prospective employers and engage in insightful career discussions.
@@ -22,11 +24,25 @@ Real-time chat functionality utilizing Socket.io, facilitating seamless communic
 
 ## Usage
 
-[Add instructions on how to set up and run the application locally or on a server.]
+To run the app locally, ensure you have Flutter installed and configured.
+Clone this repository, navigate to the project directory, and run the following command:
+
+- flutter pub get
+- flutter run
+- flutter doctor
+  
+
+
 
 ## Installation
 
-[Provide steps for installing the necessary dependencies and setting up the application.]
+- git clone https://github.com/your_username/JobHubPlatform.git
+cd JobHubPlatform
+
+- flutter pub get
+
+- flutter run
+
 
 ## Technologies Used
 
@@ -39,8 +55,15 @@ Real-time chat functionality utilizing Socket.io, facilitating seamless communic
 
 ## Contribution
 
-[Include guidelines for contribution, if applicable.]
+Contributions are welcome! Please feel free to submit a pull request or open an issue for bug fixes, new features, or improvements. Follow these steps:
+
+Fork the repository
+Create a new branch: git checkout -b feature-your-feature
+Make your changes and commit them: git commit -m 'Add new feature'
+Push to the branch: git push origin feature-your-feature
+Submit a pull request
 
 ## License
 
-[Specify the license under which the application is distributed.]
+
+
